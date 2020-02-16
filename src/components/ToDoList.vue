@@ -3,7 +3,7 @@
      <ul>
       <!-- 데이터를 받아와 v-for를 이용해 출력하기 -->
       <!-- key로써 todoItem이 지정되고 index가 같이 출력되도록 설정한다. index는 뷰 내에서 알아서 관리된다. -->
-       <li v-for="(todoItem,index) in todoItems" :key="todoItem" class="shadow">
+       <li v-for="(todoItem,index) in propsdata" :key="todoItem" class="shadow">
          <!-- check 아이콘 -->
        <i class="checkBtn fas fa-check" aria-hidden="true"></i>
          {{todoItem}}
