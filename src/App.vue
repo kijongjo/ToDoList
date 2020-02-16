@@ -3,8 +3,8 @@
 
   <!-- 컴포넌트 추가 -->
   <ToDoHeader></ToDoHeader>
-  <ToDoInput></ToDoInput>
-  <ToDoList></ToDoList>
+  <ToDoInput v-on:addTodo="addTodo"></ToDoInput>
+  <ToDoList v-bind:propsdata="todoItems"></ToDoList>
   <ToDoFooter></ToDoFooter>
 </div>
 </template>
@@ -19,6 +19,29 @@ import ToDoList from './components/ToDoList.vue'
 import ToDoInput from './components/ToDoInput.vue'
 import ToDoFooter from './components/ToDoFooter.vue'
 export default {
+  data() {
+
+    props:['propsdata'],
+
+    return {
+ //데이터 속성인 todoItems를 선언해준다.
+      todoItems: []
+
+
+    }
+  },
+   metods:{
+//로컬 스토리지에 데이터를 추가한다.
+     addTodo(todoItem){
+       localStorage.setItem(todoItem,todoItem);
+       this.todoItems.push(todoItem);
+
+
+
+
+     }},
+
+
   //최상위 컴포넌트에 다른 컴포넌트 등록
   components: {
     'ToDoHeader': ToDoHeader,
