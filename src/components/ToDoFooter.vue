@@ -1,5 +1,6 @@
 <template lang="html">
-  <div class="clearAllContainer" >
+  <div class="clearAllContainer">
+    <!-- 버튼역할 태그 clearTodo method가 실행된다. -->
   <span class="clearAllBtn" @click="clearTodo">Clear All</span>
   </div>
 </template>
@@ -8,6 +9,7 @@
 export default {
   methods:{
     clearTodo(){
+      //localStorage의 data가 비워진다.
      localStorage.clear();
 
     }
@@ -28,7 +30,5 @@ export default {
 .clearAllBtn{
   color:#e20303;
   display:black;
-
-
 }
 </style>

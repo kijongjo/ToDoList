@@ -31,7 +31,7 @@ export default {
     }
   },
    metods:{
-//로컬 스토리지에 데이터를 추가한다.
+//로컬 스토리지에 데이터를 추가한다. 매개변수는 ToDoInput에서 올라온 값(=할 일)
      addTodo(todoItem){
        localStorage.setItem(todoItem,todoItem);
        this.todoItems.push(todoItem);

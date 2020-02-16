@@ -24,8 +24,8 @@ export default {
       if (this.newToDoItem != "") {
         //input 박스에 입력된 텍스트의 압뒤 공백 문자열 제거
         var value = this.newToDoItem && this.newToDoItem.trim();
-        // newToDoItem data를 가지고 와서 로컬 스토리지에 저장한다.
-        localStorage.setItem(value, value);
+        //value값을 같이 전달한다.
+        this.$emit('addTodo',value);
         //input 박스의 입력 값을 초기화 한다.
         this.clearInput();
       }
@@ -40,10 +40,12 @@ export default {
 
 <style lang="css" scoped>
  input:focus{
+   /* 선스타일 지정 : 아무것도 없음 */
    outline:none;}
 .inputBox{
   background:white;
   height:50px;
+/* 인풋 박스에 입력되는 텍스트의 중앙 정렬을 위해 설정 */
   line-height:50px;
   border-radius:5px;
 }
@@ -53,16 +55,16 @@ export default {
 
 }
 .addContainer{
+ /* 할 일 추가 버튼의 위치 정의 */
      float:right;
      background:linear-gradient(to right, #6478FB,#8763FB);
      display:block;
      width:3rem;
      border-radius:0 5px 5px 0;
-
-
 }
  .addBtn{
    color:white;
+ /* 할일 추가 버튼의 수직 정렬 정의 */
    vertical-align:middle;
  }
 </style>
