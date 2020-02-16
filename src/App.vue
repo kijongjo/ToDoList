@@ -3,9 +3,9 @@
 
   <!-- 컴포넌트 추가 -->
   <ToDoHeader></ToDoHeader>
-  <ToDoInput v-on:addTodo="addTodo"></ToDoInput>
-  <ToDoList v-bind:propsdata="todoItems"></ToDoList>
-  <ToDoFooter></ToDoFooter>
+  <ToDoInput v-on:addToDo="addToDo"></ToDoInput>
+  <ToDoList v-bind:propsdata="todoItems" @removeTodo="removeTodo"></ToDoList>
+  <ToDoFooter v-on:removeAll="clearAll"></ToDoFooter>
 </div>
 </template>
 <script type="text/javascript">
@@ -19,27 +19,47 @@ import ToDoList from './components/ToDoList.vue'
 import ToDoInput from './components/ToDoInput.vue'
 import ToDoFooter from './components/ToDoFooter.vue'
 export default {
+  props: ['propsdata'],
   data() {
 
-    props:['propsdata'],
+
 
     return {
- //데이터 속성인 todoItems를 선언해준다.
+      //데이터 속성인 todoItems를 선언해준다.
       todoItems: []
 
 
     }
   },
-   metods:{
-//로컬 스토리지에 데이터를 추가한다. 매개변수는 ToDoInput에서 올라온 값(=할 일)
-     addTodo(todoItem){
-       localStorage.setItem(todoItem,todoItem);
-       this.todoItems.push(todoItem);
+  //뷰의 인스턴스가 생성되자마자 뷰 데이터에 접근 할 수 있도록 created() 라이프 사이클 훅에서 데이터를 뷰 데이터로 옮긴다.
+  created() {
+    //저장된 데이터 값이 0이상일 경우 반복문 실행
+    if (localStorage.length > 0) {
+      for (var i = 0; i < localStorage.length; i++) {
+        //todoItems 배열에 값을 집어 넣는다.
+        // push는 배열의 끝 요소에 배열 아이템을 하나씩 추가하는 자바스크립트 내장 API이다.
+        this.todoItems.push(localStorage.key(i));
+      }
+    }
+  },
+  methods: {
+    //로컬 스토리지에 데이터를 추가한다. 매개변수는 ToDoInput에서 올라온 값(=할 일)
+    addToDo(todoItem) {
+      localStorage.setItem(todoItem, todoItem);
+      this.todoItems.push(todoItem);
 
+    },
+    //삭제기능
+    clearAll() {
+      localStorage.clear();
+      this.todoItems = [];
 
-
-
-     }},
+    },
+    removeTodo(todoItem, index) {
+      localStorage.removeItem(todoItem);
+      this.todoItems.splice(index, 1);
+    }
+  },
 
 
   //최상위 컴포넌트에 다른 컴포넌트 등록

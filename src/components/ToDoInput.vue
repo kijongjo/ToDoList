@@ -25,7 +25,7 @@ export default {
         //input 박스에 입력된 텍스트의 압뒤 공백 문자열 제거
         var value = this.newToDoItem && this.newToDoItem.trim();
         //value값을 같이 전달한다.
-        this.$emit('addTodo',value);
+        this.$emit('addToDo',value);
         //input 박스의 입력 값을 초기화 한다.
         this.clearInput();
       }

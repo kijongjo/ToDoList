@@ -9,8 +9,7 @@
 export default {
   methods:{
     clearTodo(){
-      //localStorage의 data가 비워진다.
-     localStorage.clear();
+     this.$emit('removeAll');
 
     }
   }
