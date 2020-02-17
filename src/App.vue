@@ -74,6 +74,13 @@ export default {
 </script>
 
 <style>
+  @media(min-width:35em) {
+  body{margin:0 auto;
+      width:40%;
+  }
+
+
+  }
 body {
   /* 텍스트를 중심으로 */
   text-align: center;
